@@ -10,6 +10,9 @@ class App extends Component {
   }
 
   componentWillMount() {
+    // https://api.ffa.football/ribbon?team_ids=1962 - upcoming games
+    // https://api.ffa.football/m927954/details - match details
+    // https://api.ffa.football/t1962/fixture - fixtures
     const url = 'https://api.ffa.football/t1962/fixture';
     fetch(url)
     .then(response => response.json())
