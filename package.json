@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "immutable": "^3.8.2",
+    "moment": "^2.19.1",
+    "moment-timezone": "^0.5.13",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14"
