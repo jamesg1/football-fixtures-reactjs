@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Immutable from 'immutable';
 import logo from './logo.svg';
 import './App.css';
 
@@ -6,7 +7,7 @@ class App extends Component {
 
   constructor(){
     super();
-    this.state = {data: ''}
+    this.state = { fixtures: '' }
   }
 
   componentWillMount() {
@@ -16,12 +17,23 @@ class App extends Component {
     const url = 'https://api.ffa.football/t1962/fixture';
     fetch(url)
     .then(response => response.json())
-    .then(data => this.setState({ data: data }))
-    .catch(err => console.error(url, err.toString()))
+    .then(data => this.setState({ fixtures: Immutable.fromJS(data) }))
+    .catch(err => console.error(url, err.toString()));
+  }
+
+  componentDidMount() {
+
   }
 
   render() {
-    const data = JSON.stringify(this.state.data);
+    // const xxx = this.state.find(layout => true);
+    const { fixtures } = this.state;
+    console.log(fixtures);
+    let layout = !fixtures ? false : fixtures;
+    if (fixtures) {
+      layout = ;
+    }
+
     return (
       <div className="App">
         <header className="App-header">
@@ -31,7 +43,6 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        {data}
       </div>
     );
   }
