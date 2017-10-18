@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Immutable from 'immutable';
 import moment from 'moment-timezone';
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Card, CardText, CardHeader, CardBody,
+  CardTitle, CardSubtitle } from 'reactstrap';
 
 class App extends Component {
 
@@ -34,17 +36,19 @@ class App extends Component {
         const homeImage = imageUrl+fixture.getIn(['match', 'home_team', 'id'])+'.png';
         const awayImage = imageUrl+fixture.getIn(['match', 'away_team', 'id'])+'.png';
         const score = fixture.getIn(['match', 'status']) === 'FullTime' ? <p>{fixture.getIn(['match', 'match_info', 'home_team', 'score'])} v {fixture.getIn(['match', 'match_info', 'away_team', 'score'])}</p> : null;
-        const hashtag = fixture.getIn(['match', 'hashtag']) ? fixture.getIn(['match', 'hashtag']) : null
-        const buyTickets = fixture.getIn(['match', 'status']) !== 'FullTime' ? <a href={fixture.getIn(['match', 'buy_tickets'])}>Buy Tickets</a> : ''
+        const hashtag = fixture.getIn(['match', 'hashtag']) ? '- '+fixture.getIn(['match', 'hashtag']) : null
+        const buyTickets = fixture.getIn(['match', 'status']) !== 'FullTime' ? <a className='btn btn-primary' target='_blank' href={fixture.getIn(['match', 'buy_tickets'])}>Buy Tickets</a> : ''
         return (
-          <div key={fixture.getIn(['match', 'uuid'])}>
-            <h2>{fixture.getIn(['round', 'name'])}</h2>
-            <img className='club-logo' src={homeImage} alt={fixture.getIn(['match', 'home_team', 'name'])}/> v <img className='club-logo' src={awayImage} alt={fixture.getIn(['match', 'away_team', 'name'])} />
-            <h4>{fixture.getIn(['match', 'title'])}</h4>
-            {score}
-            <p>{kickoffTime}, {fixture.getIn(['match', 'venue', 'name'])}, {fixture.getIn(['match', 'venue', 'city'])} {buyTickets}</p>
-            {hashtag}
-          </div>
+          <Card key={fixture.getIn(['match', 'uuid'])} className='mb-3'>
+            <CardHeader>{fixture.getIn(['round', 'name'])}</CardHeader>
+            <CardBody>
+              <CardTitle>{fixture.getIn(['match', 'title'])}</CardTitle>
+              <CardSubtitle><img className='club-logo' src={homeImage} alt={fixture.getIn(['match', 'home_team', 'name'])}/> v <img className='club-logo' src={awayImage} alt={fixture.getIn(['match', 'away_team', 'name'])} /></CardSubtitle>
+              <CardText>{score}</CardText>
+              <CardText>{kickoffTime}, {fixture.getIn(['match', 'venue', 'name'])}, {fixture.getIn(['match', 'venue', 'city'])} {hashtag}</CardText>
+              {buyTickets}
+            </CardBody>
+          </Card>
         );
       }).toJS();
     }
@@ -52,10 +56,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={imageUrl+'1962.png'} className="App-logo" alt="logo" />
           <h1 className="App-title">Sydney FC Fixtures</h1>
         </header>
-        {layout}
+        <div className="container pt-3">
+          {layout}
+        </div>
       </div>
     );
   }
