@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "4.0.0-beta",
     "immutable": "^3.8.2",
     "moment": "^2.19.1",
     "moment-timezone": "^0.5.13",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.0.14",
+    "reactstrap": "next"
   },
   "scripts": {
     "start": "react-scripts start",
