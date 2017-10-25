@@ -19,7 +19,7 @@ const MatchCard = ({ fixture, imageUrl }) => {
   const buyTickets = fixture.getIn(['match', 'status']) !== 'FullTime' ? <a className='btn btn-primary' target='_blank' href={fixture.getIn(['match', 'buy_tickets'])}>Buy Tickets</a> : ''
 
   return (
-    <Card className='mb-3'>
+    <Card className='my-3'>
       <CardHeader>{fixture.getIn(['round', 'name'])}</CardHeader>
       <CardBody>
         <CardTitle>{fixture.getIn(['match', 'title'])}</CardTitle>

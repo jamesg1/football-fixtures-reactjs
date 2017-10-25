@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Immutable from 'immutable';
-import MatchCard from './components/MatchCard/MatchCard';
-import Header from './components/Header/Header';
+import MatchCard from '../components/MatchCard/MatchCard';
+import Header from '../components/Header/Header';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -41,7 +41,6 @@ class App extends Component {
 
     if (layout) {
       layout = fixtures.filter(fixture => fixture.getIn(['competition', 'name']) === 'Hyundai A-League' && fixture.getIn(['match', 'status']) !== 'FullTime').map(fixture => <MatchCard key={fixture.getIn(['match', 'uuid'])} fixture={fixture} imageUrl={imageUrl} />).toJS();
-
       resultsLayout = fixtures.filter(fixture => fixture.getIn(['competition', 'name']) === 'Hyundai A-League' && fixture.getIn(['match', 'status']) === 'FullTime').map(fixture => <MatchCard key={fixture.getIn(['match', 'uuid'])} fixture={fixture} imageUrl={imageUrl} />).toJS();
     }
 
